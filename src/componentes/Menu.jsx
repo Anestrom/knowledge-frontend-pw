@@ -37,7 +37,7 @@ function Menu() {
                         </Nav>
 
                         <Nav>
-                            <NavLink className="nav-link" to="/meu-perfil/10">
+                            <NavLink className="nav-link" to="/meu-perfil/1">
                                 Meu Perfil
                             </NavLink>
                             <NavLink className="nav-link" to="/sobre">
