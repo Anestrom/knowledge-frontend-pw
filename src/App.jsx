@@ -10,6 +10,9 @@ import Menu from "./componentes/Menu";
 import Home from "./componentes/telas/Home";
 import Sobre from "./componentes/telas/Sobre";
 import Usuario from './componentes/telas/usuario/Usuario';
+import Materia from "./componentes/telas/materia/Materia";
+import Chamado from "./componentes/telas/chamado/Chamado";
+import MeuPerfil from "./componentes/telas/MeuPerfil";
 
 // Definição das Rotas
 const router = createBrowserRouter([
@@ -25,12 +28,31 @@ const router = createBrowserRouter([
                 path: "/sobre",
                 element: <Sobre />
             },
-            // ROTAS DE CADASTRO/CRUD
+            // CRUD
             {
                 path: "/usuario",
                 element: <Usuario />
             },
-            // ROTAS DO FLUXO PRINCIPAL
+            {
+                path: "/materia",
+                element: <Materia />
+            },
+            {
+                path: "/chamado",
+                element: <Chamado />
+            },
+            {
+                path: "/chamado/aberto",
+                element: <Chamado filtro="ABERTO" />
+            },
+            {
+                path: "/chamado/historico",
+                element: <Chamado filtro="TODOS" /> 
+            },
+            {
+                path: "/meu-perfil/:id",
+                element: <MeuPerfil /> 
+            }
         ]
     }
 ]);

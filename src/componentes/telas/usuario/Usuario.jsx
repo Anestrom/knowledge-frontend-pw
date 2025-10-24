@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import UsuarioContext from './UsuarioContext';
 import { getUsuariosAPI, deleteUsuarioAPI } from '../../../servicos/UsuarioServico';
-import Tabela from './Tabela'; 
-import Formulario from './Formulario'; 
+import Tabela from './Tabela';
+import Formulario from './Formulario';
 import Carregando from '../../comuns/Carregando';
 
 function Usuario() {
@@ -11,14 +11,14 @@ function Usuario() {
     const [alerta, setAlerta] = useState({ status: "", message: "" });
     const [listaObjetos, setListaObjetos] = useState([]);
     const [exibirTabela, setExibirTabela] = useState(true); // Controla a visualização
-    
+
     const [carregando, setCarregando] = useState(true);
 
     // Objeto em Edição/Criação
     const [objeto, setObjeto] = useState({
         id: '', nome: '', email: '', senha: '', curso: '', avaliacao_media: '', creditos_saber: ''
-    }); 
-    
+    });
+
     // Função de recuperação de dados
     const recuperarUsuarios = useCallback(async () => {
         setCarregando(true);
@@ -30,18 +30,18 @@ function Usuario() {
     // Função de remoção
     const remover = async codigo => {
         if (window.confirm('Deseja remover este usuário?')) {
-            let retornoAPI = await deleteUsuarioAPI(codigo); 
+            let retornoAPI = await deleteUsuarioAPI(codigo);
             setAlerta({ status: retornoAPI.status, message: retornoAPI.message });
             recuperarUsuarios(); // Recarrega a lista
         }
     }
-    
+
     // Função para preparar a edição (chamada pela Tabela)
     const editar = (usuarioParaEditar) => {
         setObjeto(usuarioParaEditar);
         setExibirTabela(false); // Alterna para o Formulário
     }
-    
+
     // Função para preparar o cadastro (chamada pela Tabela)
     const novoObjeto = () => {
         setObjeto({ // Limpa o objeto para o POST
@@ -66,14 +66,14 @@ function Usuario() {
                 listaObjetos, setListaObjetos,
                 objeto, setObjeto,
                 exibirTabela, setExibirTabela,
-                
+
                 remover,
                 editar,
                 novoObjeto,
                 recuperarUsuarios
             }
         }>
-            {exibirTabela ? <Tabela/> : <Formulario/>} 
+            {exibirTabela ? <Tabela /> : <Formulario />}
         </UsuarioContext.Provider>
     );
 }
