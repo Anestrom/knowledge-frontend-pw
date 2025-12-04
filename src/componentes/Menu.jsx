@@ -1,53 +1,60 @@
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Container, Nav, Navbar, NavDropdown, Badge } from 'react-bootstrap';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { logout, getUser, isAdmin } from '../servicos/AuthServico';
+import { BookFill, PersonCircle, BoxArrowRight } from 'react-bootstrap-icons';
 
 function Menu() {
+    const navigate = useNavigate();
+    const user = getUser();
+    const admin = isAdmin();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     return (
         <div>
-            <Navbar
-                expand="lg"
-                variant="dark"
-                className="bg-dark shadow-sm"
-                sticky="top"
-            >
+            <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
                 <Container>
-                    <NavLink className="navbar-brand" to="/">Knowledge</NavLink>
-
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar.Brand href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                        <BookFill className="me-2" /> Knowledge
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse>
                         <Nav className="me-auto">
+                            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
 
-                            <NavLink className="nav-link" end to="/">Home</NavLink>
+                            {admin && (
+                                <NavDropdown title="Cadastros">
+                                    <NavDropdown.Item as={NavLink} to="/materia">Matérias</NavDropdown.Item>
+                                    <NavDropdown.Item as={NavLink} to="/usuario">Usuários</NavDropdown.Item>
+                                </NavDropdown>
+                            )}
 
-                            <NavDropdown title="Cadastros" id="basic-nav-dropdown">
-                                <NavLink className="dropdown-item" to="/materia">Matérias</NavLink>
-                                <NavLink className="dropdown-item" to="/usuario">Usuários</NavLink>
+                            {!admin && (
+                                <Nav.Link as={NavLink} to="/materia">Matérias</Nav.Link>
+                            )}
+
+                            <NavDropdown title="Chamados">
+                                <NavDropdown.Item as={NavLink} to="/chamado/aberto">Chamados Abertos</NavDropdown.Item>
+                                {admin && (
+                                    <NavDropdown.Item as={NavLink} to="/chamado/historico">Histórico Completo</NavDropdown.Item>
+                                )}
                             </NavDropdown>
-
-                            <NavDropdown title="Chamados" id="chamados-dropdown">
-                                <NavLink className="dropdown-item" to="/chamado/aberto">
-                                    Chamados Abertos
-                                </NavLink>
-                                <NavLink className="dropdown-item" to="/chamado/historico">
-                                    Histórico Completo
-                                </NavLink>
-                            </NavDropdown>
-
                         </Nav>
-
                         <Nav>
-                            <NavLink className="nav-link" to="/meu-perfil/1">
-                                Meu Perfil
-                            </NavLink>
-                            <NavLink className="nav-link" to="/sobre">
-                                Sobre
-                            </NavLink>
+                            <Nav.Link as={NavLink} to="/meu-perfil">
+                                <PersonCircle className="me-1" /> {user?.nome} {admin && <Badge bg="warning" text="dark">Admin</Badge>}
+                            </Nav.Link>
+                            <Nav.Link onClick={handleLogout}>
+                                <BoxArrowRight className="me-1" /> Sair
+                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
             <Outlet />
         </div>
     );

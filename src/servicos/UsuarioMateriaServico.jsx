@@ -1,9 +1,16 @@
-const ENDERECO_API_BASE = `${process.env.REACT_APP_ENDERECO_API}`;
+import { getToken } from './AuthServico';
+
+const ENDERECO_API = `${process.env.REACT_APP_ENDERECO_API}`;
+
+const getHeaders = () => ({
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${getToken()}`
+});
 
 export const getAssociacaoUsuarioAPI = async (id_usuario) => {
-    const response = await fetch(`${ENDERECO_API_BASE}/usuariomateria/${id_usuario}`, {
+    const response = await fetch(`${ENDERECO_API}/usuariomateria/${id_usuario}`, {
         method: "GET",
-        headers: { "Content-Type": "application/json" }
+        headers: getHeaders()
     });
     const data = await response.json();
     if (response.ok) {
@@ -13,9 +20,9 @@ export const getAssociacaoUsuarioAPI = async (id_usuario) => {
 }
 
 export const criarAssociacaoUsuarioAPI = async (id_user, id_subject, user_type) => {
-    const response = await fetch(`${ENDERECO_API_BASE}/usuariomateria`, {
+    const response = await fetch(`${ENDERECO_API}/usuariomateria`, {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
+        headers: getHeaders(),
         body: JSON.stringify({ id_user, id_subject, user_type }),
     });
 
@@ -29,9 +36,9 @@ export const criarAssociacaoUsuarioAPI = async (id_user, id_subject, user_type) 
 }
 
 export const deleteAssociacaoPI = async (id_associacao) => {
-    const response = await fetch(`${ENDERECO_API_BASE}/usuariomateria/${id_associacao}`, {
+    const response = await fetch(`${ENDERECO_API}/usuariomateria/${id_associacao}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: getHeaders()
     });
 
     if (response.status === 204) {

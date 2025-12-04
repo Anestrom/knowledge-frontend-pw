@@ -3,7 +3,8 @@ import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import CampoEntrada from '../../comuns/CampoEntrada'; 
 import CampoEntradaTextArea from '../../comuns/CampoEntradaTextArea';
 import ChamadoContext from './ChamadoContext';
-import { getMateriasAPI } from '../../../servicos/MateriaServico'; 
+import { getMateriasAPI } from '../../../servicos/MateriaServico';
+import { getUser } from '../../../servicos/AuthServico';
 
 function Formulario() {
     
@@ -18,6 +19,7 @@ function Formulario() {
     const [formValidated, setFormValidated] = useState(false);
     const [materias, setMaterias] = useState([]);
     const titulo = "Abrir Novo Chamado de Ajuda";
+    const user = getUser();
     
     useEffect(() => {
         const fetchMaterias = async () => {
@@ -45,10 +47,8 @@ function Formulario() {
         if (form.checkValidity() === false) return;
 
         try {
-            const ID_APRENDIZ_LOGADO = 3; 
-
             const dadosParaEnvio = {
-                id_aprendiz: ID_APRENDIZ_LOGADO,
+                id_aprendiz: user.id,
                 id_materia: objeto.id_materia,
                 localizacao: objeto.localizacao,
                 duvida_detalhes: objeto.duvida_detalhes
