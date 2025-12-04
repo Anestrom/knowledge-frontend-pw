@@ -39,6 +39,7 @@ function Menu() {
 
                             <NavDropdown title="Chamados">
                                 <NavDropdown.Item as={NavLink} to="/chamado/aberto">Chamados Abertos</NavDropdown.Item>
+                                <NavDropdown.Item as={NavLink} to="/chamado/meus">Meus Chamados</NavDropdown.Item>
                                 {admin && (
                                     <NavDropdown.Item as={NavLink} to="/chamado/historico">Histórico Completo</NavDropdown.Item>
                                 )}

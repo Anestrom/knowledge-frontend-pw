@@ -27,10 +27,10 @@ function Tabela() {
     return (
         <Container className="py-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="fw-bold text-info">
+                <h1 className="fw-bold text-primary">
                     <ChatDotsFill className="me-2" />Chamados
                 </h1>
-                <Button variant="success" size="lg" onClick={novoObjeto}>
+                <Button variant="primary" size="lg" onClick={novoObjeto}>
                     <BellFill className="me-2" /> Abrir Novo Chamado
                 </Button>
             </div>
@@ -45,7 +45,7 @@ function Tabela() {
 
             {listaObjetos.length > 0 && (
                 <Table striped bordered hover responsive className="shadow-sm">
-                    <thead className="table-info">
+                    <thead className="table-primary">
                         <tr>
                             <th className="text-center">Ações</th>
                             <th>ID</th>
@@ -86,7 +86,7 @@ function Tabela() {
                                         </Button>
                                     )}
                                 </td>
-                                <td><Badge bg="info">{objeto.id}</Badge></td>
+                                <td><Badge bg="primary">{objeto.id}</Badge></td>
                                 <td className="fw-semibold">{objeto.materia ? objeto.materia.nome : 'N/D'}</td>
                                 <td>{objeto.aprendiz ? objeto.aprendiz.nome : 'N/D'}</td>
                                 <td>{objeto.mentor ? objeto.mentor.nome : <span className="text-muted">Aguardando...</span>}</td>

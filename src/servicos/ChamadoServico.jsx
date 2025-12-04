@@ -25,6 +25,15 @@ export const getChamadosAbertosAPI = async () => {
     return data;
 }
 
+export const getMeusChamadosAPI = async () => {
+    const response = await fetch(`${ENDERECO_API}/meus`, {
+        method: "GET",
+        headers: getHeaders()
+    });
+    const data = await response.json();
+    return data;
+}
+
 export const deleteChamadoAPI = async id => {
     const response = await fetch(`${ENDERECO_API}/${id}`, {
         method: "DELETE",
@@ -66,7 +75,6 @@ export const aceitarChamadoAPI = async (id, id_mentor) => {
     return data;
 }
 
-// 6. PUT: Finalizar Chamado
 export const finalizarChamadoAPI = async (id) => {
     const response = await fetch(`${ENDERECO_API}/finalizar/${id}`, {
         method: 'PUT',

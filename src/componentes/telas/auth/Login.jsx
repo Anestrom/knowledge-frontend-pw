@@ -61,7 +61,7 @@ function Login() {
                             />
                         </Form.Group>
                         
-                        <Button variant="primary" size="lg" type="submit" className="w-100 mb-3">
+                        <Button variant="primary" size="lg" type="submit" className="fw-semibold w-100 mb-3">
                             Entrar
                         </Button>
                     </Form>

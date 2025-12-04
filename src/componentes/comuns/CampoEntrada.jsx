@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 function CampoEntrada({ id, label, tipo, value, onChange, required, readOnly, msgvalida }) {
     return (
-        <Form.Group controlId={id} className="mb-3">
+        <Form.Group className="mb-3">
             <Form.Label>{label}</Form.Label>
             <Form.Control
                 id={id}

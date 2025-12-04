@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ChamadoContext from './ChamadoContext';
-import { getTodosChamadosAPI, deleteChamadoAPI, aceitarChamadoAPI, finalizarChamadoAPI, abrirChamadoAPI, getChamadosAbertosAPI } from '../../../servicos/ChamadoServico';
+import { getTodosChamadosAPI, deleteChamadoAPI, aceitarChamadoAPI, finalizarChamadoAPI, abrirChamadoAPI, getChamadosAbertosAPI, getMeusChamadosAPI } from '../../../servicos/ChamadoServico';
 import Tabela from './Tabela';
 import Formulario from './Formulario';
 import Carregando from '../../comuns/Carregando';
@@ -16,20 +16,22 @@ function Chamado({ filtro }) {
         id: '', id_aprendiz: '', id_materia: '', localizacao: '', duvida_detalhes: ''
     });
 
-const recuperarChamados = useCallback(async () => {
+    const recuperarChamados = useCallback(async () => {
         setCarregando(true);
         let lista;
-        
+
         try {
             if (filtro === "ABERTO") {
                 lista = await getChamadosAbertosAPI();
+            } else if (filtro === "MEUS") {
+                lista = await getMeusChamadosAPI()
             } else {
                 lista = await getTodosChamadosAPI(); // Chamada para Histórico Completo
             }
-            
+
             setListaObjetos(lista && Array.isArray(lista) ? lista : []);
             setAlerta({ status: "success", message: "" });
-        } catch(error) {
+        } catch (error) {
             setListaObjetos([]);
             setAlerta({ status: "error", message: "Falha ao carregar dados da API." });
         } finally {

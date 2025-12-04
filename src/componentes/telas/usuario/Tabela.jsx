@@ -12,10 +12,10 @@ function Tabela() {
     return (
         <Container className="py-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="fw-bold text-primary">
+                <h1 className="fw-bold text-danger">
                     <PeopleFill className="me-2" />Usuários
                 </h1>
-                <Button variant="primary" size="lg" onClick={novoObjeto}>
+                <Button variant="danger" size="lg" onClick={novoObjeto}>
                     <PersonPlus className="me-2" /> Novo Usuário
                 </Button>
             </div>
@@ -30,7 +30,7 @@ function Tabela() {
 
             {listaObjetos.length > 0 && (
                 <Table striped bordered hover responsive className="shadow-sm">
-                    <thead className="table-dark">
+                    <thead className="table-danger">
                         <tr>
                             <th className="text-center">Ações</th>
                             <th>ID</th>

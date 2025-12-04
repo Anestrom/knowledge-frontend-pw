@@ -21,12 +21,12 @@ function Register() {
     };
 
     return (
-        <Container fluid className="d-flex align-items-center justify-content-center bg-success" style={{minHeight: '100vh'}}>
+        <Container fluid className="d-flex align-items-center justify-content-center bg-info" style={{minHeight: '100vh'}}>
             <Card style={{width: '450px'}} className="shadow-lg">
                 <Card.Body className="p-5">
                     <div className="text-center mb-4">
-                        <PersonPlusFill size={60} className="text-success mb-3" />
-                        <h2 className="fw-bold text-success">Criar Conta</h2>
+                        <PersonPlusFill size={60} className="text-info mb-3" />
+                        <h2 className="fw-bold text-info">Criar Conta</h2>
                         <p className="text-muted">Junte-se à comunidade</p>
                     </div>
                     
@@ -89,14 +89,14 @@ function Register() {
                             />
                         </Form.Group>
                         
-                        <Button variant="success" size="lg" type="submit" className="w-100 mb-3">
+                        <Button variant="info" size="lg" type="submit" className="text-white fw-semibold w-100 mb-3">
                             Cadastrar
                         </Button>
                     </Form>
                     
                     <div className="text-center">
                         <span className="text-muted">Já tem conta? </span>
-                        <a href="/login" className="text-success fw-semibold text-decoration-none">Faça login</a>
+                        <a href="/login" className="text-dark fw-semibold text-decoration-none">Faça login</a>
                     </div>
                 </Card.Body>
             </Card>

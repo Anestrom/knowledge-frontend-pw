@@ -55,6 +55,10 @@ const router = createBrowserRouter([
                 element: <AdminRoute><Chamado filtro="TODOS" /></AdminRoute>
             },
             {
+                path: "chamado/meus",
+                element: <Chamado filtro="MEUS" />
+            },
+            {
                 path: "meu-perfil",
                 element: <MeuPerfil /> 
             }
